@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Image Converter ✨</title>
+
+    <!-- Tailwind + custom font -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        font-family: "Inter", sans-serif;
+      }
+    </style>
+  </head>
+
+  <body
+    class="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 text-slate-100 flex items-center justify-center p-4"
+  >
+    <main
+      class="w-full max-w-xl glass p-6 sm:p-8 rounded-2xl shadow-2xl space-y-6"
+    >
+      <header class="text-center">
+        <h1
+          class="text-3xl sm:text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-sky-400 to-indigo-500"
+        >
+          Image Converter ✨
+        </h1>
+        <p class="text-sm text-slate-400 mt-1">
+          Drag, drop, convert, download.
+        </p>
+      </header>
+
+      <!-- Drop zone -->
+      <div
+        id="dropZone"
+        class="relative flex flex-col items-center justify-center border-2 border-dashed border-slate-600 hover:border-sky-400 transition-colors duration-300 rounded-xl p-6 space-y-3"
+      >
+        <svg
+          class="w-12 h-12 text-slate-500 pointer-events-none"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          viewBox="0 0 24 24"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"
+          />
+        </svg>
+        <p class="text-sm text-slate-300">
+          Drop an image here or&nbsp;
+          <label
+            for="fileInput"
+            class="text-sky-400 cursor-pointer font-semibold hover:underline"
+            >browse</label
+          >
+        </p>
+        <input id="fileInput" type="file" accept="image/*" class="hidden" />
+        <img
+          id="preview"
+          alt="preview"
+          class="hidden max-h-48 rounded-lg mt-2 shadow-md"
+        />
+      </div>
+
+      <!-- Controls -->
+      <form id="controls" class="space-y-4">
+        <div>
+          <label for="formatSelect" class="block text-sm font-medium mb-1"
+            >Convert to</label
+          >
+          <select
+            id="formatSelect"
+            class="w-full bg-slate-700/60 border border-slate-600 text-slate-100 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-sky-500 transition"
+          >
+            <!-- inside the <select id="formatSelect"> -->
+            <option value="image/png">PNG</option>
+            <option value="image/jpeg">JPEG</option>
+            <option value="image/webp">WebP</option>
+            <option value="image/avif">AVIF</option>
+            <option value="image/gif">GIF</option>
+            <!-- <option value="image/x-icon">ICO</option> -->
+          </select>
+        </div>
+
+        <div id="qualityWrapper">
+          <label for="qualityInput" class="block text-sm font-medium mb-1">
+            Quality
+            <span id="qualityValue" class="font-mono text-sky-400">0.92</span>
+          </label>
+          <input
+            id="qualityInput"
+            type="range"
+            min="0"
+            max="1"
+            step="0.05"
+            value="0.92"
+            class="w-full h-2 bg-slate-700 rounded-lg appearance-none cursor-pointer accent-sky-500"
+          />
+        </div>
+
+        <button
+          type="submit"
+          class="w-full bg-gradient-to-r from-sky-500 to-indigo-600 hover:from-sky-600 hover:to-indigo-700 disabled:opacity-50 disabled:cursor-not-allowed text-white font-semibold rounded-lg py-2.5 transition-all duration-300"
+        >
+          Convert & Download
+        </button>
+      </form>
+    </main>
+
+    <!-- tiny glass helper -->
+    <style>
+      .glass {
+        backdrop-filter: blur(16px) saturate(180%);
+        background-color: rgba(30, 41, 59, 0.65);
+        border: 1px solid rgba(255, 255, 255, 0.125);
+      }
+    </style>
+
+    <script src="convert.js"></script>
+  </body>
+</html>
